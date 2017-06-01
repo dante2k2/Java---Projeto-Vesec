@@ -83,40 +83,16 @@ public class VeiculoDAO {
 		return veiculos;
 	}
 	
-	public static ArrayList<Veiculo> consulta() throws SQLException{
-		Connection conn = null;
-		ArrayList <Veiculo> veiculos = new ArrayList<Veiculo>();
-		
-		try {
-			
-			conn = Conexao.getConexao();
-			PreparedStatement smt = conn.prepareStatement("select * from veiculo where numerochassi = ?");
-			ResultSet rs = smt.executeQuery();
-			Veiculo veiculo = null;
-			while(rs.next()){
-				veiculo = new Veiculo();
-				veiculo.setPlaca(rs.getString("placa"));
-				veiculo.setModelo(rs.getString("modelo"));
-				veiculo.setMarca(rs.getString("marca"));
-				veiculo.setAnofabricacao(rs.getInt("anofabricacao"));
-				veiculo.setCor(rs.getString("cor"));
-				veiculo.setNumerochassi(rs.getString("numerochassi"));
-				veiculos.add(veiculo);
-				
+	public static Veiculo consulta(String chassi) throws SQLException{
+		ArrayList <Veiculo> veiculos = getLista();
+		for (Veiculo v : veiculos) {
+			if (v.getNumerochassi().equalsIgnoreCase(chassi)) {
+				return v;
 			}
-			
-			rs.close();
-			smt.close();
-			
-		} catch (Exception e) {
-			e.getMessage();
-			
 		}
-		finally {
-			conn.close();
-		}
-		return veiculos;
+		return null;
 	}
+	
 	public boolean alterar(Veiculo veiculo) throws SQLException{
 		Connection conn = null;
 		String sql = "update veiculo set placa = ?, marca = ?, modelo = ?, anofabricacao = ?, cor = ? where numerochassi = ?  ";

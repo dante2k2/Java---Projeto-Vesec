@@ -63,7 +63,7 @@ public class Veiculo {
 	public String toString() {
 		
 		return "-----------------"+"\n"+"Placa: "+this.getPlaca()+"\n"+"Marca: "+this.getMarca()+"\n"+"Modelo: "+this.getModelo()
-		+"\n"+"Ano de Fabricação: "+this.getAnofabricacao()+"\n"+"Cor: "+this.getCor()+"\n"+"NVM: "+this.getNumerochassi()+"\n";
+		+"\n"+"Ano de Fabricação: "+this.getAnofabricacao()+"\n"+"Cor: "+this.getCor()+"\n"+"NIV: "+this.getNumerochassi()+"\n";
 	}
 	
 }
