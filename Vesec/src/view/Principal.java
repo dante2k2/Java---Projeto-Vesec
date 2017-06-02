@@ -83,7 +83,7 @@ public class Principal {
 
 							case "1":
 								placa = JOptionPane.showInputDialog("Digite a placa: ");
-								if (placa == null) break;
+								if (placa == null || placa.length() < 7) break;
 								veiculo3.setPlaca(placa);
 								if (vdao.alterar(veiculo3)) {
 									JOptionPane.showConfirmDialog(null, "Veículo Atualizado!", "", JOptionPane.DEFAULT_OPTION);
@@ -92,7 +92,7 @@ public class Principal {
 								break;
 							case "2":
 								marca = JOptionPane.showInputDialog("Digite a marca: ");
-								if (marca == null) break;
+								if (marca == null || marca.length() < 1) break;
 								veiculo3.setMarca(marca);
 								if (vdao.alterar(veiculo3)) {
 									JOptionPane.showConfirmDialog(null, "Veículo Atualizado!", "", JOptionPane.DEFAULT_OPTION);
@@ -101,7 +101,7 @@ public class Principal {
 								break;
 							case "3":
 								modelo = JOptionPane.showInputDialog("Digite o modelo: ");
-								if (modelo == null) break;
+								if (modelo == null || modelo.length() < 1) break;
 								veiculo3.setModelo(modelo);
 								if (vdao.alterar(veiculo3)) {
 									JOptionPane.showConfirmDialog(null, "Veículo Atualizado!", "", JOptionPane.DEFAULT_OPTION);
@@ -119,7 +119,7 @@ public class Principal {
 								break;
 							case "5":
 								cor = JOptionPane.showInputDialog("Digite a cor: ");
-								if (cor == null) break;
+								if (cor == null || cor.length() < 1) break;
 								veiculo3.setCor(cor);
 								if (vdao.alterar(veiculo3)) {
 									JOptionPane.showConfirmDialog(null, "Veículo Atualizado!", "", JOptionPane.DEFAULT_OPTION);
