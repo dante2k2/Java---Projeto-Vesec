@@ -138,7 +138,7 @@ public class Main {
 					
 				case 5:
 					
-					String placa=JOptionPane.showInputDialog("Digite a placa do veiculo:    Ex: 5ABC-0000");
+					String placa=JOptionPane.showInputDialog("Digite a placa do veiculo:    Ex: ABC-0000");
 					if (placa == null || placa.length() < 7) break;
 					String marca=JOptionPane.showInputDialog("Digite a marca do veiculo: ");
 					if (marca == null  || marca.length() < 1) break;
@@ -232,7 +232,6 @@ public class Main {
 							try {
 								if (confirma.equals("ok")) {
 									fachada.alteraVeiculo(veiculo);
-									System.out.println(veiculo);
 									JOptionPane.showMessageDialog(null, "Veiculo Alterado");
 								}
 							} catch (VeiculoInvalidoException e) {
@@ -296,47 +295,37 @@ public class Main {
 					if (id<1) break;
 					Seguro seguro = fachada.verificaSeguro(id);
 					if(seguro!=null) {
-						String opc = "";
 						String confirma = "";
-						while(!opc.equalsIgnoreCase("3")){
-							opc = JOptionPane.showInputDialog(null,"O que deseja alterar? "+"\n"
-									+ "1 - Valor \n"
-									+ "2 - Tempo \n"
-									
-									);
+						String opc = JOptionPane.showInputDialog(null,"O que deseja alterar? "+"\n"
+								+ "1 - Valor \n"
+								+ "2 - Tempo \n");
+						switch (opc) {
+						case "1":
+							valor=JOptionPane.showInputDialog("Digite o valor do seguro: ");
+							if (valor == null || valor.length() < 1) break;
+							seguro.setValor(valor); confirma = "ok";
+							break;
+						case "2":
+							tempo=Integer.parseInt(JOptionPane.showInputDialog("Digite o tempo de duração: "));
+							if (tempo <1) break;
+							seguro.setTempo(tempo); confirma = "ok";
+							break;
+						
+						default:
+							JOptionPane.showConfirmDialog(null, "Opção Inválida!", "", JOptionPane.DEFAULT_OPTION);
+							break;
 						}
-					
-							
-							switch (opc) {
-							case "1":
-								valor=JOptionPane.showInputDialog("Digite o valor do seguro: ");
-								if (valor == null || valor.length() < 1) break;
-								seguro.setValor(valor); confirma = "ok";
-								break;
-							case "2":
-								tempo=Integer.parseInt(JOptionPane.showInputDialog("Digite o tempo de duração: "));
-								if (tempo <1) break;
-								seguro.setTempo(tempo); confirma = "ok";
-								break;
-							
-							default:
-								JOptionPane.showConfirmDialog(null, "Opção Inválida!", "", JOptionPane.DEFAULT_OPTION);
-								break;
+						try {
+							if (confirma.equals("ok")) {
+								fachada.alteraSeguro(seguro);;
+								JOptionPane.showMessageDialog(null, "Seguro Alterado");
 							}
-							try {
-								if (confirma.equals("ok")) {
-									fachada.alteraSeguro(seguro);;
-									JOptionPane.showMessageDialog(null, "Seguro Alterado");
-								}
-							} catch (SeguroInvalidoException e) {
-								JOptionPane.showMessageDialog(null,e.getMessage());
-							}catch(SQLException e){
-								JOptionPane.showMessageDialog(null,e.getMessage());
-							}
-				
-					
-					
-					}else{
+						} catch (SeguroInvalidoException e) {
+							JOptionPane.showMessageDialog(null,e.getMessage());
+						}catch(SQLException e){
+							JOptionPane.showMessageDialog(null,e.getMessage());
+						}
+					} else{
 						JOptionPane.showConfirmDialog(null, "Seguro não encontrado!", "", JOptionPane.DEFAULT_OPTION);
 					}
 				

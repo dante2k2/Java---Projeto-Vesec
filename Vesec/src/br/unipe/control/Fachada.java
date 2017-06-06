@@ -83,7 +83,7 @@ public class Fachada {
 	}
 	public void alteraVeiculo(Veiculo veiculo)
 			throws VeiculoInvalidoException,SQLException{
-		if(!veiculoDao.existeVeiculo(veiculo.getChassi())){
+		if(veiculoDao.existeVeiculo(veiculo.getChassi())){
 			veiculoDao.alterar(veiculo);
 		}
 		else{
